@@ -6,4 +6,10 @@ class Song(object):
         self.uri = uri
         self.open_link = open_link
 
-    def parse_data(self):
+    def get_attrib(self, attrib):
+        if attrib == "id":
+            return self.song_id
+        elif attrib == "uri":
+            return self.uri
+        elif attrib == "link":
+            return self.open_link
