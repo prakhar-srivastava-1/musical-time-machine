@@ -1,32 +1,22 @@
-import requests
-from bs4 import BeautifulSoup
 from spotify import SpotifyClient
+from billboard import Billboard
 
 # user_date = input("Which year do you want to travel to? Please enter the date in this format YYYY-MM-DD:\n")
 user_date = "2000-08-12"
+year = user_date.split("-")[0]
+year = year.strip()
 # construct url
 url = f"https://www.billboard.com/charts/hot-100/{user_date}"
 
+# crate Billboard object
+billboard = Billboard(url)
 # send request and capture response
-response = requests.get(url)
-webpage = response.text
+list_of_songs = billboard.get_songs()
 
-# make soup
-soup = BeautifulSoup(webpage, "html.parser")
-
-# fetch songs
-song_titles = soup.select(selector="ul li h3#title-of-a-story")
-# song_artists = soup.select(selector="ul li span.c-label")
-
-# get list of songs
-list_of_songs = list()
-for song_title in song_titles:
-    list_of_songs.append((song_title.getText()).strip())
-
-# search songs details on spotify using the above search query
+# search songs on spotify using search query
 sc = SpotifyClient()
 for song in list_of_songs:
-    query_string = f"{song} year:2000"
+    query_string = f"{song} year:{year}"
     try:
         sc.search_song(query_string)
     except IndexError:
