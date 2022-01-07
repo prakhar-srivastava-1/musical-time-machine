@@ -144,5 +144,6 @@ cython_debug/
 
 # additional list
 .idea/
+secrets.py
 
 # End of https://www.toptal.com/developers/gitignore/api/python
