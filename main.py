@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from spotify_data import SpotifyClient
+from spotify import SpotifyClient
 
 # user_date = input("Which year do you want to travel to? Please enter the date in this format YYYY-MM-DD:\n")
 user_date = "2000-08-12"
