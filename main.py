@@ -15,13 +15,15 @@ list_of_songs = billboard.get_songs()
 
 # search songs on spotify using search query
 sc = SpotifyClient()
-for song in list_of_songs:
-    query_string = f"{song} year:{year}"
-    try:
-        sc.search_song(query_string)
-    except IndexError:
-        continue
+# for song in list_of_songs:
+#     query_string = f"{song} year:{year}"
+#     try:
+#         sc.search_song(query_string)
+#     except IndexError:
+#         continue
 
+# create playlist
+sc.create_playlist(user_date)
 
 # debug
 # print(soup)
