@@ -22,7 +22,7 @@ class SpotifyClient(object):
         print(response["tracks"]["items"][0]["external_urls"]["spotify"])
 
     def create_playlist(self, user_date):
-        user = "310lggqfq3vyzqy6jznspvudqg4y"
+        user = self.sp.current_user()["id"]
         name = f"{user_date} Billboard 100"
         self.sp.user_playlist_create(user=user, name=name,
                                      public=False, collaborative=False,
