@@ -13,7 +13,7 @@ class SpotifyClient(object):
                                          client_secret=CLIENT_SECRET,
                                          redirect_uri="http://example.com",
                                          username="310lggqfq3vyzqy6jznspvudqg4y",
-                                         scope="playlist-modify-private")
+                                         scope="playlist-modify-private user-library-read")
 
         self.sp = spotipy.client.Spotify(auth_manager=self.auth_manager)
 
@@ -25,8 +25,12 @@ class SpotifyClient(object):
         user = self.sp.current_user()["id"]
         name = f"{user_date} Billboard 100"
         self.sp.user_playlist_create(user=user, name=name,
-                                     public=False, collaborative=False,
+                                     public=True, collaborative=False,
                                      description='A throwback playlist to make you feel nostalgic')
+
+    def get_user_playlists(self):
+        playlists = self.sp.current_user_playlists()
+        print(playlists)
 
 # create a new playlist
 # user = "3GbPC5S4STGnDvihg4fHwTrxkVp229xjy6"
